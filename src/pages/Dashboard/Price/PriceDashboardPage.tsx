@@ -1,11 +1,13 @@
 import React from 'react';
-import { UploadProductsForm } from '../../../components';
+import { ProductsTable } from '../../../components';
+import styles from './PriceDashboardPage.module.scss';
 
 export const PriceDashboardPage = () => {
   return (
-    <div>
-      PricePage
-      <UploadProductsForm />
+    <div className={styles.container}>
+      {/*PricePage*/}
+      {/*<UploadProductsForm />*/}
+      <ProductsTable />
     </div>
   );
 };

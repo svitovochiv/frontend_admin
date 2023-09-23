@@ -6,7 +6,11 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query/react';
-import { IUploadProductsFileRequest } from '../interfaces';
+import {
+  IGetProductsResponse,
+  IUploadProductsFileRequest,
+} from '../interfaces';
+import { ApiTags } from './tags';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${CONFIG.API_URL}/api`,
@@ -21,7 +25,7 @@ const baseQueryWithReauth: BaseQueryFn<
 };
 
 export const productApi = createApi({
-  tagTypes: [],
+  tagTypes: [ApiTags.Product],
   reducerPath: 'productApi',
   baseQuery: baseQueryWithReauth,
   endpoints: (build) => ({
@@ -36,8 +40,13 @@ export const productApi = createApi({
           formData: true,
         };
       },
+      invalidatesTags: [ApiTags.Product],
+    }),
+    getProducts: build.query<IGetProductsResponse, void>({
+      query: () => `/products`,
+      providesTags: [ApiTags.Product],
     }),
   }),
 });
 
-export const { useUploadProductsMutation } = productApi;
+export const { useUploadProductsMutation, useGetProductsQuery } = productApi;

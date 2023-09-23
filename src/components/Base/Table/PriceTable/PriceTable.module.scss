@@ -1,0 +1,38 @@
+.tableContainer {
+
+  thead {
+    th {
+
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      color: #000000;
+
+
+    }
+  }
+
+  tbody {
+    tr:nth-child(2n) {
+      background: #F4F7FC;
+    }
+
+
+
+    tr {
+      border-bottom: 20px solid transparent;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 20px;
+      color: #000000;
+    }
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+  height: 25px;
+}
