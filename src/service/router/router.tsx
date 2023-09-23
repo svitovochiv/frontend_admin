@@ -6,6 +6,7 @@ import { ThirdPartyEmailPasswordPreBuiltUI } from 'supertokens-auth-react/recipe
 import { initSuperTokens } from '../superTokens';
 import { Protected } from '../../components';
 import { DashboardPage } from '../../pages/Dashboard/DashboardPage';
+import { PriceDashboardPage } from '../../pages/Dashboard/Price';
 initSuperTokens();
 
 export const router = createBrowserRouter([
@@ -19,6 +20,12 @@ export const router = createBrowserRouter([
       {
         path: paths.dashboard,
         element: <DashboardPage />,
+        children: [
+          {
+            path: paths.dashboardPrice,
+            element: <PriceDashboardPage />,
+          },
+        ],
       },
     ],
   },

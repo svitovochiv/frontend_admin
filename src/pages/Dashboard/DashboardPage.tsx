@@ -1,11 +1,23 @@
-import React from 'react';
-import { UploadProductsForm } from '../../components';
+import React, { useEffect } from 'react';
+import { MainDashboardHeader } from '../../components';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useCurrentPath } from '../../hooks';
+import { paths } from '../../service/router/paths';
 
 export const DashboardPage = () => {
+  const currentPath = useCurrentPath();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentPath === paths.dashboard) {
+      navigate(paths.dashboardPrice);
+    }
+  }, [currentPath]);
+
   return (
     <div>
-      <h2>Dashboard </h2>
-      <UploadProductsForm />
+      <MainDashboardHeader />
+      <Outlet />
     </div>
   );
 };

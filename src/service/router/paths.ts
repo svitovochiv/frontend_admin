@@ -2,6 +2,7 @@ export enum BasePath {
   main = '/',
   dashboard = '/dashboard',
   auth = '/auth',
+  dashboardPrice = '/dashboard/price',
 }
 
 class Paths {
@@ -14,6 +15,10 @@ class Paths {
 
   get auth() {
     return BasePath.auth;
+  }
+
+  get dashboardPrice() {
+    return BasePath.dashboardPrice;
   }
 
   get basePaths() {
