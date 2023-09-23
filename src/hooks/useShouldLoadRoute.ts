@@ -18,7 +18,7 @@ export const useShouldLoadRoute = () => {
 
   return useMemo(() => {
     if (isNoSessionMoreThan2Seconds) {
-      return { isLoading: false, hasInvalidClaims: true };
+      return { isLoading: false, isNoSessionMoreThan2Seconds: true };
     }
 
     if (!session) {
