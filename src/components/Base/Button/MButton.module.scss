@@ -1,0 +1,15 @@
+.mbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: lightblue;
+  }
+}

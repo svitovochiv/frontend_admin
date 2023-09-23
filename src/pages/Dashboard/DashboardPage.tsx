@@ -1,5 +1,11 @@
 import React from 'react';
+import { UploadProductsForm } from '../../components';
 
 export const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <div>
+      <h2>Dashboard </h2>
+      <UploadProductsForm />
+    </div>
+  );
 };

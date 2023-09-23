@@ -1,3 +1,5 @@
+import './resetStyle.css';
+import './font.scss';
 import { SuperTokensWrapper } from 'supertokens-auth-react';
 import { router } from './service';
 import { RouterProvider } from 'react-router-dom';
