@@ -1,22 +1,22 @@
 import React from 'react';
-
-import { FileInput } from '../../Base/Input';
 import { useUploadProducts } from '../../../hooks';
-import { MButton } from '../../Base';
+import { FileInput, ButtonSubmit } from '../../Base';
+import styles from './UploadProductsForm.module.scss';
 
 export const UploadProductsForm = () => {
   const { title, selectFile, sendProducts } = useUploadProducts();
 
   return (
     <form
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        sendProducts();
+        await sendProducts();
       }}
+      className={styles.container}
     >
-      {/*<h2>Завантажити товари</h2>*/}
+      <p>Оберіть файл з продуктами</p>
       <FileInput label={title} onChange={selectFile} />
-      <MButton type="submit">Відправити</MButton>
+      <ButtonSubmit type="submit">Відправити</ButtonSubmit>
     </form>
   );
 };

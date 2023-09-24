@@ -1,0 +1,13 @@
+@import "src/colors";
+
+.container {
+  padding: 20px 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: $grey-color;
+  border-radius: 6px;
+  height: fit-content;
+}

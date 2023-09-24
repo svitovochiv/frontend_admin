@@ -8,10 +8,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import React, { useEffect } from 'react';
-import styles from './PriceTable.module.scss';
+import styles from './BaseTable.module.scss';
 import { MButton } from '../../Button';
 
-export function PriceTable({
+export function BaseTable({
   data,
   columns,
 }: {
@@ -35,8 +35,8 @@ export function PriceTable({
   }, []);
 
   return (
-    <div className="p-2">
-      <div className="h-2" />
+    <div>
+      <div />
       <div className={styles.buttonContainer}>
         <MButton
           className="border rounded p-1"
@@ -66,15 +66,15 @@ export function PriceTable({
         >
           {'>>'}
         </MButton>
-        <span className="flex items-center gap-1">
+        <span>
           <div>Сторінка</div>
           <strong>
             {table.getState().pagination.pageIndex + 1} of{' '}
             {table.getPageCount()}
           </strong>
         </span>
-        <span className="flex items-center gap-1">
-          | Go to page:
+        <span>
+          | сторінка:
           <input
             type="number"
             defaultValue={table.getState().pagination.pageIndex + 1}
@@ -82,7 +82,6 @@ export function PriceTable({
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               table.setPageIndex(page);
             }}
-            className="border p-1 rounded w-16"
           />
         </span>
         <select
@@ -93,7 +92,7 @@ export function PriceTable({
         >
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
-              Show {pageSize}
+              Показати {pageSize}
             </option>
           ))}
         </select>

@@ -1,27 +1,34 @@
 import React from 'react';
-import { useGetProductsQuery } from '../../../api';
 import { ColumnDef } from '@tanstack/react-table';
 import { Product } from '../../../interfaces';
-import { PriceTable } from '../../Base';
+import { BaseTable } from '../../Base';
+import { quantityUtil } from '../../../utils/quantity.util';
+import { useAppSelector, useGetProductsToStore } from '../../../hooks';
 
 export const ProductsTable = () => {
-  const { data: products } = useGetProductsQuery();
-
+  useGetProductsToStore();
+  const products = useAppSelector((state) => state.productSlice.products);
   const columns = React.useMemo<ColumnDef<Product>[]>(
     () => [
       {
         accessorKey: 'name',
+        header: 'Назва',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         size: 250,
       },
       {
         accessorKey: 'quantity',
-        cell: (info) => info.getValue(),
+        header: 'тип',
+        cell: (info) => {
+          const quantity = info.getValue();
+          return quantityUtil.quantityToUkraineQuantity(quantity);
+        },
         footer: (props) => props.column.id,
       },
       {
         accessorKey: 'price',
+        header: 'Ціна',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
       },
@@ -32,7 +39,7 @@ export const ProductsTable = () => {
   return (
     <div>
       {products && (
-        <PriceTable
+        <BaseTable
           {...{
             data: products,
             columns,
