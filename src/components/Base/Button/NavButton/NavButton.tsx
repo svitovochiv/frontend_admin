@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './NavButton.module.scss';
+import { Link } from 'react-router-dom';
 
 export const NavButton: React.FC<{
-  name?: string;
-  onClick?: () => void;
-}> = ({ name, onClick }) => {
+  name: string;
+  link: string;
+}> = ({ name, link }) => {
   return (
-    <button onClick={onClick} className={styles.container}>
-      {name}
-    </button>
+    <Link to={link}>
+      <button className={styles.container}>{name}</button>
+    </Link>
   );
 };

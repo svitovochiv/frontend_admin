@@ -1,7 +1,7 @@
 import { matchRoutes, useLocation } from 'react-router-dom';
-import { paths } from '../service/router/paths';
+import { route } from '../service/router/route';
 
-const routes = paths.basePaths.map((path) => ({ path }));
+const routes = route.basePaths.map((path) => ({ path }));
 
 export const useCurrentPath = () => {
   const location = useLocation();

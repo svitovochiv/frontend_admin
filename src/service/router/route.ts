@@ -3,9 +3,10 @@ export enum BasePath {
   dashboard = '/dashboard',
   auth = '/auth',
   dashboardPrice = '/dashboard/price',
+  dashboardOrders = '/dashboard/orders',
 }
 
-class Paths {
+class Route {
   get main() {
     return BasePath.main;
   }
@@ -21,9 +22,13 @@ class Paths {
     return BasePath.dashboardPrice;
   }
 
+  get dashboardOrders() {
+    return BasePath.dashboardOrders;
+  }
+
   get basePaths() {
     return Object.values(BasePath);
   }
 }
 
-export const paths = new Paths();
+export const route = new Route();
