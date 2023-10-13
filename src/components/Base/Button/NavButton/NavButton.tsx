@@ -5,10 +5,14 @@ import { Link } from 'react-router-dom';
 export const NavButton: React.FC<{
   name: string;
   link: string;
-}> = ({ name, link }) => {
+  isActive?: boolean;
+}> = ({ name, link, isActive }) => {
+  const className = isActive
+    ? [styles.container, styles.active].join(' ')
+    : styles.container;
   return (
     <Link to={link}>
-      <button className={styles.container}>{name}</button>
+      <button className={className}>{name}</button>
     </Link>
   );
 };
