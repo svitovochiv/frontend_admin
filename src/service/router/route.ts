@@ -26,6 +26,10 @@ class Route {
     return BasePath.dashboardOrders;
   }
 
+  dashboardOrderInfo(id: string) {
+    return `${this.dashboardOrders}/${id}`;
+  }
+
   get basePaths() {
     return Object.values(BasePath);
   }
