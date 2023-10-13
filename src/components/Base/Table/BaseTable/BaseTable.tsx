@@ -1,4 +1,3 @@
-import { Product } from '../../../../interfaces';
 import {
   ColumnDef,
   flexRender,
@@ -15,8 +14,8 @@ export function BaseTable({
   data,
   columns,
 }: {
-  data: Product[];
-  columns: ColumnDef<Product>[];
+  data: any[];
+  columns: ColumnDef<any>[];
 }) {
   const table = useReactTable({
     data,
@@ -102,12 +101,16 @@ export function BaseTable({
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                const { width, minWidth } = {
+                  width: header.column.getSize(),
+                  minWidth: header.column.getSize(),
+                };
                 return (
                   <th
                     className={styles.headerCell}
                     style={{
-                      width: header.column.getSize(),
-                      minWidth: header.column.getSize(),
+                      width,
+                      minWidth,
                     }}
                     key={header.id}
                     colSpan={header.colSpan}
@@ -133,8 +136,12 @@ export function BaseTable({
               <tr className={styles.bodyRow} key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   const size = cell.column.getSize();
+                  const hasMeta = cell.getContext().cell.column.columnDef.meta;
+                  const meta = hasMeta && {
+                    ...hasMeta.getCellContext(cell.getContext()),
+                  };
                   return (
-                    <td style={{ width: size, minWidth: size }} key={cell.id}>
+                    <td style={{ ...meta?.style }} key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),

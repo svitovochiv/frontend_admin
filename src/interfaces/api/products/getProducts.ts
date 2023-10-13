@@ -1,5 +1,5 @@
 export type IGetProductsResponse = {
-  id: number;
+  id: string;
   name: string;
   quantity: string;
   price: number;
