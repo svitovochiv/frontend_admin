@@ -105,6 +105,7 @@ export function BaseTable({
                   width: header.column.getSize(),
                   minWidth: header.column.getSize(),
                 };
+                console.log('width', width);
                 return (
                   <th
                     className={styles.headerCell}

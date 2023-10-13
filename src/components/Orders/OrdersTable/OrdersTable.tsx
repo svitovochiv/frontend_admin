@@ -3,8 +3,9 @@ import { useOrders } from '../../../hooks/useOrders';
 import { BaseTable } from '../../Base';
 import { OrderMinimalInfo } from '../../../interfaces';
 import moment from 'moment';
-import { CellContext, ColumnDef } from '@tanstack/react-table';
+import { ColumnDef } from '@tanstack/react-table';
 import { createCellContext } from '../../../interfaces/table/MColumnDef';
+import { MoreAboutOrder } from '../MoreAboutOrder';
 
 export const OrdersTable = () => {
   const { orders } = useOrders();
@@ -55,6 +56,12 @@ export const OrdersTable = () => {
         cell: (info) =>
           moment(info.getValue() as string).format('DD.MM.YYYY HH:mm'),
         footer: (props) => props.column.id,
+      },
+      {
+        id: 'more',
+        size: 0,
+        minSize: 0,
+        cell: (info) => <MoreAboutOrder orderId={info.row.original.id} />,
       },
     ],
     [],
