@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useOrders } from '../../../hooks/useOrders';
 import { BaseTable } from '../../Base';
 import { OrderMinimalInfo } from '../../../interfaces';
 import moment from 'moment';
 import { ColumnDef } from '@tanstack/react-table';
 import { createCellContext } from '../../../interfaces/table/MColumnDef';
-import { MoreAboutOrder } from '../MoreAboutOrder';
+import { MoreAboutOrderButton } from '../MoreAboutOrder';
+import { orderStatusMap } from '../../../service';
+import { OrderStatus } from '../../../contants';
 
 export const OrdersTable = () => {
   const { orders } = useOrders();
 
-  const columns = React.useMemo<ColumnDef<OrderMinimalInfo>[]>(
+  const columns = useMemo<ColumnDef<OrderMinimalInfo>[]>(
     () => [
       {
         accessorKey: 'id',
@@ -41,7 +43,7 @@ export const OrdersTable = () => {
       {
         accessorKey: 'status',
         header: 'Статус',
-        cell: (info) => info.getValue(),
+        cell: (info) => orderStatusMap[info.getValue() as OrderStatus],
         footer: (props) => props.column.id,
       },
       {
@@ -61,7 +63,7 @@ export const OrdersTable = () => {
         id: 'more',
         size: 0,
         minSize: 0,
-        cell: (info) => <MoreAboutOrder orderId={info.row.original.id} />,
+        cell: (info) => <MoreAboutOrderButton orderId={info.row.original.id} />,
       },
     ],
     [],

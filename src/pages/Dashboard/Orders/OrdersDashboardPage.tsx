@@ -4,7 +4,7 @@ import { OrdersTable } from '../../../components';
 
 export const OrdersDashboardPage = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <OrdersTable />
     </div>
   );

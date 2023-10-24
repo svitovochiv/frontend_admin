@@ -1,7 +1,7 @@
 import { Quantity } from './quantity';
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   quantity: Quantity;
   price: number;

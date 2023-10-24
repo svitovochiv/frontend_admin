@@ -1,1 +1,1 @@
-export * from './OrderMinimalInfo';
+export * from './orderMinimalInfo';

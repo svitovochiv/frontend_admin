@@ -1,1 +1,1 @@
-export * from './MoreAboutOrder';
+export * from './MoreAboutOrderButton';
