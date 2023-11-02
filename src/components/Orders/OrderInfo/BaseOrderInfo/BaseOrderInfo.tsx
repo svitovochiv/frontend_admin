@@ -2,6 +2,7 @@ import React from 'react';
 import { OrderDeliveryInfo } from '../../../../interfaces';
 import styles from './BaseOrderInfo.module.scss';
 import moment from 'moment';
+import { paymentMap } from '../../../../service';
 
 export const BaseOrderInfo: React.FC<{
   deliveryInfo: OrderDeliveryInfo;
@@ -20,7 +21,9 @@ export const BaseOrderInfo: React.FC<{
         </div>
         <div className={styles.gridItem}>
           <div className={styles.label}>Спосіб оплати</div>
-          <div className={styles.value}>{deliveryInfo.paymentMethod}</div>
+          <div className={styles.value}>
+            {paymentMap[deliveryInfo.paymentMethod]}
+          </div>
         </div>
         <div className={styles.gridItem}>
           <div className={styles.label}>Адреса</div>

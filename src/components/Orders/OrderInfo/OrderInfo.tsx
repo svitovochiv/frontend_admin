@@ -8,6 +8,7 @@ import {
 import { OrderInfoTable } from '../OrderInfoTable';
 import { BaseOrderInfo } from './BaseOrderInfo';
 import styles from './OrderInfo.module.scss';
+import { PaymentMethod } from '../../../enum';
 
 export const OrderInfo: React.FC<{
   orderId: string;
@@ -33,7 +34,7 @@ export const OrderInfo: React.FC<{
     createdAt: fullOrderInfo.createdAt,
     updatedAt: fullOrderInfo.updatedAt,
     address: fullOrderInfo.address,
-    paymentMethod: fullOrderInfo.paymentMethod,
+    paymentMethod: fullOrderInfo.paymentMethod as PaymentMethod,
     contactNumber: fullOrderInfo.contactNumber,
     recipient: fullOrderInfo.recipient,
   };
