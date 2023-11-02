@@ -1,3 +1,5 @@
+@import "src/colors";
+
 .mbutton {
   display: flex;
   justify-content: center;
@@ -12,4 +14,17 @@
   &:hover {
     background-color: lightblue;
   }
+}
+
+.submitButton {
+  background: #0A65FF;
+  border-radius: 11px;
+  color: $white;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
 }

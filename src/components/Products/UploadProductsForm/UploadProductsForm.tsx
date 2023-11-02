@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUploadProducts } from '../../../hooks';
-import { FileInput, ButtonSubmit } from '../../Base';
+import { FileInput, MButton } from '../../Base';
 import styles from './UploadProductsForm.module.scss';
 
 export const UploadProductsForm = () => {
@@ -16,7 +16,9 @@ export const UploadProductsForm = () => {
     >
       <p>Оберіть файл з продуктами</p>
       <FileInput label={title} onChange={selectFile} />
-      <ButtonSubmit type="submit">Відправити</ButtonSubmit>
+      <MButton variant="submit" type="submit">
+        Відправити
+      </MButton>
     </form>
   );
 };

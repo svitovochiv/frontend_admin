@@ -1,7 +1,7 @@
 import React from 'react';
-import { ButtonSubmit } from '../../Base';
 import { useNavigate } from 'react-router-dom';
 import { route } from '../../../service/router/route';
+import { MButton } from '../../Base';
 
 export const MoreAboutOrderButton: React.FC<{
   orderId: string;
@@ -11,8 +11,8 @@ export const MoreAboutOrderButton: React.FC<{
     navigate(route.openOrder({ orderId }));
   };
   return (
-    <>
-      <ButtonSubmit onClick={onClick}>Відкрити</ButtonSubmit>
-    </>
+    <MButton variant="submit" onClick={onClick}>
+      Відкрити
+    </MButton>
   );
 };

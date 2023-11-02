@@ -6,11 +6,7 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query/react';
-import {
-  IGetOrdersResponse,
-  IGetProductsResponse,
-  IUploadProductsFileRequest,
-} from '../interfaces';
+
 import { ApiTags } from './tags';
 
 const baseQuery = fetchBaseQuery({
