@@ -6,10 +6,10 @@
   align-items: center;
   padding: 3px 5px;
   border-radius: 5px;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: $white;
+  border: 1px solid $black;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
 
   &:hover {
     background-color: lightblue;
@@ -17,7 +17,7 @@
 }
 
 .submitButton {
-  background: #0A65FF;
+  background: $blue;
   border-radius: 11px;
   color: $white;
   font-weight: 500;
@@ -27,4 +27,8 @@
   justify-content: center;
   align-items: center;
   width: fit-content;
+  transition: background-color 0.1s ease-in-out;
+  &:hover {
+    background-color: $blue2;
+  }
 }
