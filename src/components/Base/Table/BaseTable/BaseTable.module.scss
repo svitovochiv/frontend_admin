@@ -1,33 +1,40 @@
+@import "src/colors";
+
 .tableContainer {
   width: 100%;
 
   thead {
     th {
-
+      border-right: 1px solid $grey-color2;
+      padding: 10px;
       font-style: normal;
       font-weight: 500;
       font-size: 18px;
       line-height: 22px;
       color: #000000;
-
-
     }
   }
 
   tbody {
-
     tr:nth-child(2n) {
       background: #F4F7FC;
     }
 
 
     tr {
+      &:first-child {
+        border-top: 1px solid $grey-color2;
+      }
+
       td {
-        border-left: 10px solid transparent;
+        border-right: 1px solid $grey-color2;
+        padding: 10px;
+        &:first-child {
+          border-left: 1px solid $grey-color2;
+        }
       }
 
       height: fit-content;
-      border-bottom: 20px solid transparent;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
