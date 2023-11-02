@@ -1,0 +1,9 @@
+.container {
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+
+  .orderInfo{
+    margin-bottom: 30px;
+  }
+}

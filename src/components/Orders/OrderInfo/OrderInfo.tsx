@@ -3,11 +3,11 @@ import { useGetOrderInformationQuery } from '../../../api';
 import {
   OrderDeliveryInfo,
   OrderedProduct,
-  OrderMinimalInfo,
   Quantity,
 } from '../../../interfaces';
 import { OrderInfoTable } from '../OrderInfoTable';
 import { BaseOrderInfo } from './BaseOrderInfo';
+import styles from './OrderInfo.module.scss';
 
 export const OrderInfo: React.FC<{
   orderId: string;
@@ -39,9 +39,15 @@ export const OrderInfo: React.FC<{
   };
 
   return (
-    <div>
-      {baseOrderInfo && <BaseOrderInfo deliveryInfo={baseOrderInfo} />}
-      {orderedProducts && <OrderInfoTable orderedProducts={orderedProducts} />}
+    <div className={styles.container}>
+      <div className={styles.orderInfo}>
+        {baseOrderInfo && <BaseOrderInfo deliveryInfo={baseOrderInfo} />}
+      </div>
+      <div>
+        {orderedProducts && (
+          <OrderInfoTable orderedProducts={orderedProducts} />
+        )}
+      </div>
     </div>
   );
 };

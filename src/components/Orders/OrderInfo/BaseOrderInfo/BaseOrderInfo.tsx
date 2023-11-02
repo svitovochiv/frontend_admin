@@ -15,7 +15,7 @@ export const BaseOrderInfo: React.FC<{
           <div className={styles.value}>{deliveryInfo.recipient}</div>
         </div>
         <div className={styles.gridItem}>
-          <div className={styles.label}>Отримувач</div>
+          <div className={styles.label}>Номер телефону</div>
           <div className={styles.value}>{deliveryInfo.contactNumber}</div>
         </div>
         <div className={styles.gridItem}>
@@ -37,6 +37,10 @@ export const BaseOrderInfo: React.FC<{
           <div className={styles.value}>
             {moment(deliveryInfo.updatedAt).format('YYYY/MM/DD hh:mm')}
           </div>
+        </div>
+        <div className={styles.gridItem}>
+          <div className={styles.label}>Сумма</div>
+          <div className={styles.value}>{deliveryInfo.sum}грн</div>
         </div>
       </div>
     </div>

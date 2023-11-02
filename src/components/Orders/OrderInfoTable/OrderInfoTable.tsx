@@ -3,6 +3,7 @@ import { OrderedProduct } from '../../../interfaces';
 import { BaseTable } from '../../Base';
 import { ColumnDef } from '@tanstack/react-table';
 import { quantityUtil } from '../../../utils/quantity.util';
+import styles from './OrderInfoTable.module.scss';
 
 export const OrderInfoTable: React.FC<{
   orderedProducts: OrderedProduct[];
@@ -41,7 +42,8 @@ export const OrderInfoTable: React.FC<{
   );
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.title}>Замовлені товари</div>
       <BaseTable
         {...{
           data: orderedProducts,
