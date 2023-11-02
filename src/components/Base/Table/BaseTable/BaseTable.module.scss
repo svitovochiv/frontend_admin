@@ -4,6 +4,9 @@
   width: 100%;
 
   thead {
+    &:first-child {
+      border-top: 1px solid $grey-color2;
+    }
     th {
       border-right: 1px solid $grey-color2;
       padding: 10px;
@@ -24,6 +27,9 @@
     tr {
       &:first-child {
         border-top: 1px solid $grey-color2;
+      }
+      &:last-child {
+        border-bottom: 1px solid $grey-color2;
       }
 
       td {
