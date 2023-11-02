@@ -25,37 +25,9 @@ const baseQueryWithReauth: BaseQueryFn<
   return baseQuery(args, api, extraOptions);
 };
 
-export const productApi = createApi({
-  tagTypes: [ApiTags.Product, ApiTags.Orders],
-  reducerPath: 'productApi',
+export const baseApi = createApi({
+  reducerPath: 'baseApi',
   baseQuery: baseQueryWithReauth,
-  endpoints: (build) => ({
-    uploadProducts: build.mutation<unknown, IUploadProductsFileRequest>({
-      query: (params: IUploadProductsFileRequest) => {
-        const formData = new FormData();
-        formData.append('file', params.file);
-        return {
-          url: `/products/file`,
-          method: 'POST',
-          body: formData,
-          formData: true,
-        };
-      },
-      invalidatesTags: [ApiTags.Product],
-    }),
-    getProducts: build.query<IGetProductsResponse, void>({
-      query: () => `/products`,
-      providesTags: [ApiTags.Product],
-    }),
-    getOrders: build.query<IGetOrdersResponse, void>({
-      query: () => `/order/all`,
-      providesTags: [ApiTags.Orders],
-    }),
-  }),
+  tagTypes: [ApiTags.Product, ApiTags.Orders],
+  endpoints: () => ({}),
 });
-
-export const {
-  useUploadProductsMutation,
-  useGetProductsQuery,
-  useGetOrdersQuery,
-} = productApi;

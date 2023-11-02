@@ -1,6 +1,5 @@
-// store.ts
 import { configureStore } from '@reduxjs/toolkit';
-import { productApi } from '../../api';
+import { baseApi, productApi } from '../../api';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { productSlice } from './productStore';
 
@@ -11,7 +10,7 @@ export const store = configureStore({
     // Add your reducers here
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(productApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 setupListeners(store.dispatch);
