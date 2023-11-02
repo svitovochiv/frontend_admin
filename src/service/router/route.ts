@@ -4,6 +4,7 @@ export enum BasePath {
   login = '/login',
   dashboardPrice = '/dashboard/price',
   dashboardOrders = '/dashboard/orders',
+  dashboardOrderId = '/dashboard/orders/:id',
 }
 
 class Route {
@@ -26,12 +27,20 @@ class Route {
     return BasePath.dashboardOrders;
   }
 
+  get dashboardOrderId() {
+    return BasePath.dashboardOrderId;
+  }
+
   dashboardOrderInfo(id: string) {
     return `${this.dashboardOrders}/${id}`;
   }
 
   get basePaths() {
     return Object.values(BasePath);
+  }
+
+  openOrder({ orderId }: { orderId: string }) {
+    return `${this.dashboardOrders}/${orderId}`;
   }
 }
 

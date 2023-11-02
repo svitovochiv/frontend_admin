@@ -5,6 +5,7 @@ import { Protected } from '../../components';
 import {
   DashboardPage,
   LoginPage,
+  OrderInformationPage,
   OrdersDashboardPage,
   PriceDashboardPage,
 } from '../../pages';
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
           {
             path: route.dashboardOrders,
             element: <OrdersDashboardPage />,
+          },
+          {
+            path: route.dashboardOrderId,
+            element: <OrderInformationPage />,
           },
         ],
       },
