@@ -4,7 +4,6 @@ import { BaseTable } from '../../Base';
 import { OrderMinimalInfo } from '../../../interfaces';
 import moment from 'moment';
 import { ColumnDef } from '@tanstack/react-table';
-import { createCellContext } from '../../../interfaces/table/MColumnDef';
 import { MoreAboutOrderButton } from '../MoreAboutOrder';
 import { orderStatusMap } from '../../../service';
 import { OrderStatus } from '../../../contants';
@@ -14,25 +13,6 @@ export const OrdersTable = () => {
 
   const columns = useMemo<ColumnDef<OrderMinimalInfo>[]>(
     () => [
-      {
-        accessorKey: 'id',
-        header: '№',
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-        size: 60,
-        meta: {
-          getCellContext: () =>
-            createCellContext({
-              style: {
-                fontSize: 12,
-                maxWidth: 60,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              },
-            }),
-        },
-      },
       {
         accessorKey: 'recipient',
         header: 'Клієнт',

@@ -8,4 +8,5 @@ export interface OrderMinimalInfo {
   address: string;
   recipient: string;
   contactNumber: string;
+  sum: number;
 }
