@@ -1,21 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { route } from './route';
-import { getSuperTokensRoutesForReactRouterDom } from 'supertokens-auth-react/ui';
-import * as reactRouterDom from 'react-router-dom';
-import { ThirdPartyEmailPasswordPreBuiltUI } from 'supertokens-auth-react/recipe/thirdpartyemailpassword/prebuiltui';
 import { initSuperTokens } from '../superTokens';
 import { Protected } from '../../components';
 import {
   DashboardPage,
+  LoginPage,
   OrdersDashboardPage,
   PriceDashboardPage,
 } from '../../pages';
 initSuperTokens();
 
 export const router = createBrowserRouter([
-  ...getSuperTokensRoutesForReactRouterDom(reactRouterDom, [
-    ThirdPartyEmailPasswordPreBuiltUI,
-  ]).map((r) => r.props),
   {
     path: route.main,
     element: <Protected />,
@@ -35,5 +30,9 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: route.login,
+    element: <LoginPage />,
   },
 ]);

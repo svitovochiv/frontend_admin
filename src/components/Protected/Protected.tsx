@@ -16,7 +16,7 @@ export const Protected: React.FC = () => {
     ) {
       navigate(route.dashboard);
     } else if (isUserLogged.isNoSessionMoreThan2Seconds) {
-      navigate(route.auth);
+      navigate(route.login);
     }
   }, [navigate, path, isUserLogged]);
 

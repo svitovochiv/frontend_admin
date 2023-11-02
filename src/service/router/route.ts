@@ -1,7 +1,7 @@
 export enum BasePath {
   main = '/',
   dashboard = '/dashboard',
-  auth = '/auth',
+  login = '/login',
   dashboardPrice = '/dashboard/price',
   dashboardOrders = '/dashboard/orders',
 }
@@ -14,8 +14,8 @@ class Route {
     return BasePath.dashboard;
   }
 
-  get auth() {
-    return BasePath.auth;
+  get login() {
+    return BasePath.login;
   }
 
   get dashboardPrice() {
