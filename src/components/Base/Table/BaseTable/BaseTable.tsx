@@ -8,7 +8,6 @@ import {
 } from '@tanstack/react-table';
 import React, { useEffect } from 'react';
 import styles from './BaseTable.module.scss';
-import { MButton } from '../../Button';
 import { BaseTableNavigation } from './BaseTableNavigation';
 
 export function BaseTable({
@@ -77,7 +76,6 @@ export function BaseTable({
             return (
               <tr className={styles.bodyRow} key={row.id}>
                 {row.getVisibleCells().map((cell) => {
-                  const size = cell.column.getSize();
                   const hasMeta = cell.getContext().cell.column.columnDef.meta;
                   const meta = hasMeta && {
                     ...hasMeta.getCellContext(cell.getContext()),

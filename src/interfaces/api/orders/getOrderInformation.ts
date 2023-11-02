@@ -19,5 +19,6 @@ export interface GetOrderInformationResponse {
     productId: string;
     name: string;
     sum: number;
+    quantity: string;
   }[];
 }

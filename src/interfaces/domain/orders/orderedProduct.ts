@@ -1,3 +1,5 @@
+import { Quantity } from '../product';
+
 export interface OrderedProduct {
   name: string;
   count: number;
@@ -5,4 +7,5 @@ export interface OrderedProduct {
   orderId: string;
   productId: string;
   sum: number;
+  quantity: Quantity;
 }

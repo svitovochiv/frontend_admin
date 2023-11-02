@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { OrderedProduct } from '../../../interfaces';
 import { BaseTable } from '../../Base';
 import { ColumnDef } from '@tanstack/react-table';
+import { quantityUtil } from '../../../utils/quantity.util';
 
 export const OrderInfoTable: React.FC<{
   orderedProducts: OrderedProduct[];
@@ -20,9 +21,15 @@ export const OrderInfoTable: React.FC<{
         cell: (info) => `${info.getValue()}грн`,
       },
       {
-        accessorKey: 'quantity',
+        accessorKey: 'count',
         header: 'Кількість',
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+          const quantity = info.row.original.quantity;
+          const mappedQuantity =
+            quantityUtil.quantityToUkraineQuantity(quantity);
+          const value = info.getValue();
+          return `${value}${mappedQuantity}`;
+        },
       },
       {
         accessorKey: 'sum',

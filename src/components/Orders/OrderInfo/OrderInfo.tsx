@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGetOrderInformationQuery } from '../../../api';
-import { OrderedProduct } from '../../../interfaces';
+import { OrderedProduct, Quantity } from '../../../interfaces';
 import { OrderInfoTable } from '../OrderInfoTable';
 
 export const OrderInfo: React.FC<{
@@ -15,6 +15,7 @@ export const OrderInfo: React.FC<{
       name: orderedProduct.name,
       price: orderedProduct.price,
       sum: orderedProduct.sum,
+      quantity: orderedProduct.quantity as Quantity,
     }));
   return (
     <div>
