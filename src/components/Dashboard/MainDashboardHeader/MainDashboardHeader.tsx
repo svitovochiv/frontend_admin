@@ -3,6 +3,8 @@ import styles from './MainDashboardHeader.module.scss';
 import { NavButton } from '../../Base';
 import { route } from '../../../service/router/route';
 import { useCurrentPath } from '../../../hooks';
+import { Box, Button } from '@mui/material';
+import { HeaderUserInfo } from '../HeaderUserInfo/HeaderUserInfo';
 
 const navButtons = [
   {
@@ -31,6 +33,9 @@ export const MainDashboardHeader = () => {
           />
         );
       })}
+      <Box>
+        <HeaderUserInfo />
+      </Box>
     </div>
   );
 };
