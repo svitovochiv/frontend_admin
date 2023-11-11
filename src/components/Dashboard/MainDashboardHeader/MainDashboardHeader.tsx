@@ -3,7 +3,7 @@ import styles from './MainDashboardHeader.module.scss';
 import { NavButton } from '../../Base';
 import { route } from '../../../service/router/route';
 import { useCurrentPath } from '../../../hooks';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { HeaderUserInfo } from '../HeaderUserInfo/HeaderUserInfo';
 
 const navButtons = [
@@ -22,17 +22,19 @@ export const MainDashboardHeader = () => {
 
   return (
     <div className={styles.container}>
-      {navButtons.map((button) => {
-        const isActive = currentPath?.includes(button.link);
-        return (
-          <NavButton
-            name={button.name}
-            link={button.link}
-            isActive={isActive}
-            key={button.link}
-          />
-        );
-      })}
+      <Box>
+        {navButtons.map((button) => {
+          const isActive = currentPath?.includes(button.link);
+          return (
+            <NavButton
+              name={button.name}
+              link={button.link}
+              isActive={isActive}
+              key={button.link}
+            />
+          );
+        })}
+      </Box>
       <Box>
         <HeaderUserInfo />
       </Box>
