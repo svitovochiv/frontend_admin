@@ -21,7 +21,7 @@ export const MainDashboardHeader = () => {
   return (
     <div className={styles.container}>
       {navButtons.map((button) => {
-        const isActive = currentPath === button.link;
+        const isActive = currentPath?.includes(button.link);
         return (
           <NavButton
             name={button.name}

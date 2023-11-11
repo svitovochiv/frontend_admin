@@ -9,7 +9,7 @@ export const BaseOrderInfo: React.FC<{
 }> = ({ deliveryInfo }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Інформація про доставку</div>
+      <div className={styles.title}>Інформація про замовлення</div>
       <div className={styles.grid}>
         <div className={styles.gridItem}>
           <div className={styles.label}>Отримувач</div>

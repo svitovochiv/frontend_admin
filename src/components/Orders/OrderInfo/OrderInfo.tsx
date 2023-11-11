@@ -9,6 +9,7 @@ import { OrderInfoTable } from '../OrderInfoTable';
 import { BaseOrderInfo } from './BaseOrderInfo';
 import styles from './OrderInfo.module.scss';
 import { PaymentMethod } from '../../../enum';
+import { MButton } from '../../Base';
 
 export const OrderInfo: React.FC<{
   orderId: string;
