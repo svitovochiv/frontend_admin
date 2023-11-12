@@ -1,0 +1,26 @@
+name: Deploy React to AWS
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
+      - name: Generate random suffix
+        id: random_suffix
+        run: echo "RANDOM_SUFFIX=$(uuidgen)" >> $GITHUB_ENV
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: frontend-admin
+          environment_name: frontend-admin-env
+          version_label: ${{ github.sha }}_${{ env.RANDOM_SUFFIX }}
+          existing_bucket_name: elasticbeanstalk-eu-central-1-281087710135
+          region: eu-central-1
+          deployment_package: deploy.zip
