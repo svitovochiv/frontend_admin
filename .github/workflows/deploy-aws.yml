@@ -9,8 +9,8 @@ jobs:
         uses: actions/checkout@v2
       - name: fill envs
         run: >
-          echo -e "VITE_API_URL=http://backend-env.eba-8sfmdrgd.eu-central-1.elasticbeanstalk.com/api \n
-          VITE_WEB_URL=http://frontend-admin-env.eba-m9r6cfm7.eu-central-1.elasticbeanstalk.com/dashboard
+          echo -e "VITE_API_URL=http://backend-env.eba-8sfmdrgd.eu-central-1.elasticbeanstalk.com \n
+          VITE_WEB_URL=http://frontend-admin-env.eba-m9r6cfm7.eu-central-1.elasticbeanstalk.com
           " >> .env && cat .env
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
