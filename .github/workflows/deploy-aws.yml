@@ -7,7 +7,12 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-
+      - name: fill envs
+        run: >
+          echo -e "
+          VITE_API_URL=http://localhost:8080
+          VITE_WEB_URL=http://localhost:3000
+          " >> .env
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
       - name: Generate random suffix
