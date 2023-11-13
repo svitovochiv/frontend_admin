@@ -3,6 +3,7 @@ import ThirdPartyEmailPassword from 'supertokens-auth-react/recipe/thirdpartyema
 import Session from 'supertokens-auth-react/recipe/session';
 import { CONFIG } from '../../config';
 
+console.log('config: ', CONFIG);
 export const initSuperTokens = () => {
   SuperTokens.init({
     appInfo: {
