@@ -9,8 +9,7 @@ jobs:
         uses: actions/checkout@v2
       - name: fill envs
         run: >
-          echo -e "
-          VITE_API_URL=http://localhost:8080
+          echo -e "VITE_API_URL=http://localhost:8080
           VITE_WEB_URL=http://localhost:3000
           " >> .env && cat .env
       - name: Generate deployment package
