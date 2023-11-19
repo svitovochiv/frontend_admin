@@ -76,7 +76,7 @@ export const LoginPage = () => {
     >
       <Box
         sx={{
-          width: '320px',
+          width: '310px',
           display: 'flex',
           flexDirection: 'column',
           gap: '10px',
