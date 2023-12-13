@@ -33,6 +33,11 @@ export const OrdersTable = () => {
         footer: (props) => props.column.id,
       },
       {
+        accessorKey: 'status',
+        header: 'Статус',
+        cell: (info) => orderStatusMap[info.getValue() as OrderStatus],
+      },
+      {
         accessorKey: 'createdAt',
         header: 'Створено',
         cell: (info) =>
