@@ -1,12 +1,13 @@
 import React from 'react';
+
 import { OrderDeliveryInfo } from '../../../../interfaces';
 import styles from './BaseOrderInfo.module.scss';
-import moment from 'moment';
-import { paymentMap } from '../../../../service';
+import { paymentMap, time } from '../../../../service';
 
 export const BaseOrderInfo: React.FC<{
   deliveryInfo: OrderDeliveryInfo;
 }> = ({ deliveryInfo }) => {
+  console.log('deliveryInfo: ', deliveryInfo);
   return (
     <div className={styles.container}>
       <div className={styles.title}>Інформація про замовлення</div>
@@ -32,13 +33,13 @@ export const BaseOrderInfo: React.FC<{
         <div className={styles.gridItem}>
           <div className={styles.label}>Створено</div>
           <div className={styles.value}>
-            {moment(deliveryInfo.createdAt).format('YYYY/MM/DD hh:mm')}
+            {time(deliveryInfo.createdAt).format('YYYY/MM/DD HH:mm')}
           </div>
         </div>
         <div className={styles.gridItem}>
           <div className={styles.label}>Останнє оновлення</div>
           <div className={styles.value}>
-            {moment(deliveryInfo.updatedAt).format('YYYY/MM/DD hh:mm')}
+            {time(deliveryInfo.updatedAt).format('YYYY/MMM/DD HH:mm')}
           </div>
         </div>
         <div className={styles.gridItem}>

@@ -1,5 +1,4 @@
 import {
-  IGetOrdersResponse,
   IGetProductsResponse,
   IUploadProductsFileRequest,
 } from '../interfaces';
