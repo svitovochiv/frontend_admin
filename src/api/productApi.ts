@@ -1,5 +1,4 @@
 import {
-  IGetOrdersResponse,
   IGetProductsResponse,
   IUploadProductsFileRequest,
 } from '../interfaces';
@@ -25,15 +24,7 @@ export const productApi = baseApi.injectEndpoints({
       query: () => `/products`,
       providesTags: [ApiTags.Product],
     }),
-    getOrders: build.query<IGetOrdersResponse, void>({
-      query: () => `/order/all`,
-      providesTags: [ApiTags.Orders],
-    }),
   }),
 });
 
-export const {
-  useUploadProductsMutation,
-  useGetProductsQuery,
-  useGetOrdersQuery,
-} = productApi;
+export const { useUploadProductsMutation, useGetProductsQuery } = productApi;

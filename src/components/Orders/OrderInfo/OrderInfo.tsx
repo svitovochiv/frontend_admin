@@ -3,13 +3,14 @@ import { useGetOrderInformationQuery } from '../../../api';
 import {
   OrderDeliveryInfo,
   OrderedProduct,
+  OrderManipulationInfo,
   Quantity,
 } from '../../../interfaces';
 import { OrderInfoTable } from '../OrderInfoTable';
 import { BaseOrderInfo } from './BaseOrderInfo';
 import styles from './OrderInfo.module.scss';
 import { PaymentMethod } from '../../../enum';
-import { MButton } from '../../Base';
+import { OrderManipulation } from '../OrderManipulation';
 
 export const OrderInfo: React.FC<{
   orderId: string;
@@ -40,10 +41,20 @@ export const OrderInfo: React.FC<{
     recipient: fullOrderInfo.recipient,
   };
 
+  const orderManipulation: OrderManipulationInfo | undefined =
+    fullOrderInfo && {
+      orderId: fullOrderInfo.id,
+      createdAt: fullOrderInfo.createdAt,
+      updatedAt: fullOrderInfo.updatedAt,
+      status: fullOrderInfo.status,
+    };
   return (
     <div className={styles.container}>
       <div className={styles.orderInfo}>
         {baseOrderInfo && <BaseOrderInfo deliveryInfo={baseOrderInfo} />}
+        {orderManipulation && (
+          <OrderManipulation manipulationInfo={orderManipulation} />
+        )}
       </div>
       <div>
         {orderedProducts && (

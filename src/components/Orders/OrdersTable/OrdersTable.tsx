@@ -2,10 +2,9 @@ import React, { useMemo } from 'react';
 import { useOrders } from '../../../hooks/useOrders';
 import { BaseTable } from '../../Base';
 import { OrderMinimalInfo } from '../../../interfaces';
-import moment from 'moment';
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreAboutOrderButton } from '../MoreAboutOrder';
-import { orderStatusMap } from '../../../service';
+import { orderStatusMap, time } from '../../../service';
 import { OrderStatus } from '../../../contants';
 
 export const OrdersTable = () => {
@@ -33,10 +32,15 @@ export const OrdersTable = () => {
         footer: (props) => props.column.id,
       },
       {
+        accessorKey: 'status',
+        header: 'Статус',
+        cell: (info) => orderStatusMap[info.getValue() as OrderStatus],
+      },
+      {
         accessorKey: 'createdAt',
         header: 'Створено',
         cell: (info) =>
-          moment(info.getValue() as string).format('DD.MM.YYYY HH:mm'),
+          time(info.getValue() as string).format('DD.MM.YYYY HH:mm'),
         footer: (props) => props.column.id,
       },
       {
