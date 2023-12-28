@@ -11,7 +11,7 @@ export const useGetProductsToStore = () => {
   useEffect(() => {
     if (products) {
       // check quantity
-      const checkedProducts: Product[] = products.map((product) => {
+      const checkedProducts: Product[] = products.products.map((product) => {
         const normalizedQuantity = quantityUtil.normalizeQuantity(
           product.quantity,
         );
