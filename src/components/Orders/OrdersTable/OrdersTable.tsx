@@ -6,6 +6,8 @@ import { ColumnDef } from '@tanstack/react-table';
 import { MoreAboutOrderButton } from '../MoreAboutOrder';
 import { orderStatusMap, time } from '../../../service';
 import { OrderStatus } from '../../../contants';
+import { Box, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select/SelectInput';
 
 export const OrdersTable = () => {
   const { orders } = useOrders();
@@ -53,8 +55,59 @@ export const OrdersTable = () => {
     [],
   );
 
+  const statuses = [
+    { value: undefined, label: 'Всі' },
+    { value: OrderStatus.CREATED, label: 'Створені' },
+    { value: OrderStatus.DELIVERED, label: 'Доставлені' },
+  ];
+
+  const [ordersQuery, setOrdersQuery] = React.useState<{
+    status: OrderStatus | '';
+  }>({
+    status: '',
+  });
+
+  const selectedValueOption = statuses.find(
+    (option) => option.value === ordersQuery.status,
+  );
+
+  const onStatusChange = (e: SelectChangeEvent<OrderStatus | ''>) => {
+    setOrdersQuery({
+      ...ordersQuery,
+      status: e.target.value as OrderStatus | '',
+    });
+  };
+
   return (
     <div>
+      <Box>
+        <Typography
+          sx={{
+            fontSize: '14px',
+            fontWeight: 500,
+          }}
+        >
+          Статус
+        </Typography>
+        <Select
+          size="small"
+          sx={{
+            width: '140px',
+          }}
+          renderValue={() => selectedValueOption?.label || 'Всі'}
+          onChange={onStatusChange}
+          value={ordersQuery.status}
+          displayEmpty
+        >
+          {statuses.map((statusOption) => {
+            return (
+              <MenuItem value={statusOption.value}>
+                {statusOption.label}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </Box>
       {orders && (
         <BaseTable
           {...{

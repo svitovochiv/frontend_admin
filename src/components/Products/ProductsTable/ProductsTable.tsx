@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { Product } from '../../../interfaces';
 import { BaseTable } from '../../Base';

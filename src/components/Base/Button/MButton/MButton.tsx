@@ -18,7 +18,6 @@ export const MButton: React.FC<IButtonProps> = ({
   children,
   ...props
 }) => {
-  console.log('variant', variant, children);
   if (variant === 'submit') {
     const joinedClassName = `${styles.submitButton} ${className}`;
     return (
