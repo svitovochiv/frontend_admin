@@ -1,3 +1,5 @@
+import { OrderStatus, SortDateType } from '../../../contants';
+
 export type IGetOrdersResponse = {
   id: string;
   createdAt: string;
@@ -9,3 +11,9 @@ export type IGetOrdersResponse = {
   recipient: string;
   contactNumber: string;
 }[];
+
+export type GetOrdersRequest = {
+  withUserId?: string;
+  withStatus?: OrderStatus;
+  sortByCreatedAtDate?: SortDateType;
+};

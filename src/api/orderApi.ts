@@ -2,6 +2,7 @@ import { baseApi } from './baseApi';
 import {
   GetOrderInformationRequest,
   GetOrderInformationResponse,
+  GetOrdersRequest,
   IGetOrdersResponse,
   UpdateOrderReq,
 } from '../interfaces';
@@ -27,8 +28,12 @@ export const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Orders],
     }),
-    getOrders: build.query<IGetOrdersResponse, void>({
-      query: () => `/order/all`,
+    getOrders: build.query<IGetOrdersResponse, GetOrdersRequest | undefined>({
+      query: (params) => ({
+        url: `/order/all`,
+        method: 'GET',
+        params: params,
+      }),
       providesTags: [ApiTags.Orders],
     }),
   }),

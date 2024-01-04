@@ -1,66 +1,68 @@
 import React from 'react';
 import { Table } from '@tanstack/react-table';
 import styles from './BaseTable.module.scss';
-import { MButton } from '../../Button';
+import {
+  Box,
+  IconButton,
+  Input,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
 export const BaseTableNavigation: React.FC<{
   table: Table<any>;
 }> = ({ table }) => {
+  const currentPage = table.getState().pagination.pageIndex + 1;
+  const pageCount = table.getPageCount();
+
+  const onPageCountChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    const page = e.target.value ? Number(e.target.value) - 1 : 0;
+    // debugger;
+    if (page >= 0 && page < pageCount) {
+      table.setPageIndex(page);
+    }
+  };
+
   return (
-    <div className={styles.buttonContainer}>
-      <MButton
-        onClick={() => table.setPageIndex(0)}
-        disabled={!table.getCanPreviousPage()}
-      >
-        {'<<'}
-      </MButton>
-      <MButton
-        onClick={() => table.previousPage()}
-        disabled={!table.getCanPreviousPage()}
-      >
-        {'<'}
-      </MButton>
-      <MButton
-        onClick={() => table.nextPage()}
-        disabled={!table.getCanNextPage()}
-      >
-        {'>'}
-      </MButton>
-      <MButton
-        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-        disabled={!table.getCanNextPage()}
-      >
-        {'>>'}
-      </MButton>
-      <span>
-        <div>Сторінка</div>
-        <strong>
-          {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </strong>
-      </span>
-      <span>
-        | сторінка:
-        <input
+    <Box className={styles.buttonContainer}>
+      <Box>
+        <IconButton
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <KeyboardArrowLeft />
+        </IconButton>
+        <IconButton
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          <KeyboardArrowRight />
+        </IconButton>
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        Сторінка:
+        <Input
+          size="small"
           type="number"
-          defaultValue={table.getState().pagination.pageIndex + 1}
-          onChange={(e) => {
-            const page = e.target.value ? Number(e.target.value) - 1 : 0;
-            table.setPageIndex(page);
+          defaultValue={currentPage}
+          value={currentPage}
+          onChange={onPageCountChange}
+          sx={{
+            width: '50px',
+            marginLeft: '5px',
+            marginRight: '5px',
+            '& input': {
+              textAlign: 'center',
+            },
           }}
         />
-      </span>
-      <select
-        value={table.getState().pagination.pageSize}
-        onChange={(e) => {
-          table.setPageSize(Number(e.target.value));
-        }}
-      >
-        {[10, 20, 30, 40, 50].map((pageSize) => (
-          <option key={pageSize} value={pageSize}>
-            Показати {pageSize}
-          </option>
-        ))}
-      </select>
-    </div>
+        <Typography>з {pageCount}</Typography>
+      </Box>
+    </Box>
   );
 };

@@ -1,14 +1,31 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useOrders } from '../../../hooks/useOrders';
 import { BaseTable } from '../../Base';
-import { OrderMinimalInfo } from '../../../interfaces';
+import { OrderMinimalInfo, OrdersQuery } from '../../../interfaces';
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreAboutOrderButton } from '../MoreAboutOrder';
 import { orderStatusMap, time } from '../../../service';
-import { OrderStatus } from '../../../contants';
+import { OrderStatus, SortDateType } from '../../../contants';
+import { OptionValue, SelectWithLabel } from '../../Base/Input/SelectWithLabel';
+import { Box } from '@mui/material';
+
+const statusOptions: OptionValue<OrderStatus | undefined>[] = [
+  { value: undefined, label: 'Всі' },
+  { value: OrderStatus.CREATED, label: 'Створені' },
+  { value: OrderStatus.DELIVERED, label: 'Доставлені' },
+];
+
+const sortOptions: OptionValue<SortDateType>[] = [
+  { value: SortDateType.DESC, label: 'Спочатку нові' },
+  { value: SortDateType.ASC, label: 'Спочатку старі' },
+];
 
 export const OrdersTable = () => {
-  const { orders } = useOrders();
+  const [ordersQuery, setOrdersQuery] = useState<OrdersQuery>({
+    sortByCreatedAtDate: SortDateType.ASC,
+  });
+
+  const { orders } = useOrders(ordersQuery);
 
   const columns = useMemo<ColumnDef<OrderMinimalInfo>[]>(
     () => [
@@ -20,10 +37,9 @@ export const OrdersTable = () => {
         footer: (props) => props.column.id,
       },
       {
-        accessorKey: 'status',
-        header: 'Статус',
-        cell: (info) => orderStatusMap[info.getValue() as OrderStatus],
-        footer: (props) => props.column.id,
+        accessorKey: 'address',
+        header: 'Адреса',
+        cell: (info) => info.getValue(),
       },
       {
         accessorKey: 'totalPrice',
@@ -53,8 +69,53 @@ export const OrdersTable = () => {
     [],
   );
 
+  const selectedValueOption = statusOptions.find(
+    (option) => option.value === ordersQuery.withStatus,
+  );
+
+  const onStatusChange = (value: OrderStatus | undefined) => {
+    setOrdersQuery({
+      ...ordersQuery,
+      withStatus: value,
+    });
+  };
+
+  const onSortChange = (value: SortDateType) => {
+    setOrdersQuery({
+      ...ordersQuery,
+      sortByCreatedAtDate: value,
+    });
+  };
+
   return (
-    <div>
+    <Box>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+        }}
+      >
+        <SelectWithLabel
+          options={statusOptions}
+          selectedValue={ordersQuery.withStatus}
+          onChange={onStatusChange}
+          label="Статус"
+        />
+        <SelectWithLabel
+          options={sortOptions}
+          selectedValue={ordersQuery.sortByCreatedAtDate}
+          onChange={onSortChange}
+          label="сортувати"
+          slotProps={{
+            select: {
+              sx: {
+                width: '180px',
+              },
+            },
+          }}
+        />
+      </Box>
+
       {orders && (
         <BaseTable
           {...{
@@ -63,6 +124,6 @@ export const OrdersTable = () => {
           }}
         />
       )}
-    </div>
+    </Box>
   );
 };

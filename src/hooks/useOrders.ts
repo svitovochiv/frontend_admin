@@ -1,8 +1,8 @@
 import { useGetOrdersQuery } from '../api';
-import { OrderMinimalInfo } from '../interfaces';
+import { OrderMinimalInfo, OrdersQuery } from '../interfaces';
 
-export const useOrders = () => {
-  const { data } = useGetOrdersQuery();
+export const useOrders = (ordersQuery?: OrdersQuery) => {
+  const { data } = useGetOrdersQuery(ordersQuery);
   return {
     orders: data as OrderMinimalInfo[] | undefined,
   };
