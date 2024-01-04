@@ -28,8 +28,12 @@ export const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Orders],
     }),
-    getOrders: build.query<IGetOrdersResponse, GetOrdersRequest>({
-      query: () => `/order/all`,
+    getOrders: build.query<IGetOrdersResponse, GetOrdersRequest | undefined>({
+      query: (params) => ({
+        url: `/order/all`,
+        method: 'GET',
+        params: params,
+      }),
       providesTags: [ApiTags.Orders],
     }),
   }),
