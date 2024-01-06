@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from 'react';
 import { useUploadProductsMutation } from '../api';
+import { isRTKError } from '../interfaces';
 
 export const useUploadProducts = () => {
-  const [uploadProducts] = useUploadProductsMutation();
+  const [uploadProducts, { error }] = useUploadProductsMutation();
 
   const [file, setFile] = useState<File>();
 
@@ -21,10 +22,11 @@ export const useUploadProducts = () => {
       console.log('sendProducts: ', file?.name);
     }
   };
-
+  const validatedError = isRTKError(error) ? error.data : undefined;
   return {
     title,
     selectFile,
     sendProducts,
+    error: validatedError,
   };
 };
